@@ -1,0 +1,25 @@
+version: "3"
+
+services:
+  node:
+    container_name: node-app
+    build:
+      context: ./node
+      dockerfile: ./node.dockerfile
+    ports:
+      - "3000:3000"
+    networks:
+      - nodeapp-network
+
+  mongodb:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+    networks:
+      - nodeapp-network
+
+
+networks:
+  nodeapp-network:
+    driver: bridge
